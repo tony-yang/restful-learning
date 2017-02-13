@@ -4,7 +4,7 @@ import mimetypes
 
 import falcon
 
-class Resource(object):
+class Collection(object):
     def __init__(self, storage_path):
         self.storage_path = storage_path
 
@@ -27,3 +27,13 @@ class Resource(object):
     def on_get(self, req, resp):
         resp.body = '{"message": "Hello world!"}'
         resp.status = falcon.HTTP_200
+
+class Item(object):
+    def __init__(self, storage_path):
+        self.storage_path = storage_path
+
+    def on_get(self, req, resp, name):
+        resp.content_type = mimetypes.guess_type(name)[0]
+        image_path = os.path.join(self.storage_path, name)
+        resp.stream = open(image_path, 'rb')
+        resp.stream_len = os.path.getsize(image_path)
