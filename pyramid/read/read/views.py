@@ -1,4 +1,5 @@
 from pyramid.view import view_config
+from pyramid.response import Response
 
 class ReadViews:
     def __init__(self, request):
@@ -7,4 +8,5 @@ class ReadViews:
     @view_config(route_name='reads', renderer='json')
     def reads(self):
         value = "{'AAAA':'BBBBBBBBB,CCCC,DDDD,EEEE,FFFF,GGGGGGGG'}"
+        response = Response(body=value, status=200, content_type='application/json')
         return value
