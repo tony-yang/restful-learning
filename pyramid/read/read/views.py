@@ -8,5 +8,5 @@ class ReadViews:
     @view_config(route_name='reads', renderer='json')
     def reads(self):
         value = "{'AAAA':'BBBBBBBBB,CCCC,DDDD,EEEE,FFFF,GGGGGGGG'}"
-        response = Response(body=value, status=200, content_type='application/json')
+        response = Response(body=value, status=200, content_type='application/json', charset='UTF-8')
         return value
