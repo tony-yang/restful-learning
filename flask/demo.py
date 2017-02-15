@@ -18,7 +18,7 @@ def show_user(username):
 def show_post(post_id):
     return 'Post {}'.format(post_id)
 
-@app.route('/login', method=['POST', 'GET'])
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     error = None
     if request.method == 'POST':
